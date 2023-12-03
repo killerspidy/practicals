@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Form Validation - Employee Registration</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #DCDCDC;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+    </style>
+</head>
+
+<body onload="document.registration.first.focus();" bgcolor="orange">
+    <div class="container">
+        <h1>Employee Registration Form</h1>
+        <form name='registration' onSubmit="return formValidation();">
+            <ul>
+                <li>
+                    <label for="first">First Name:</label>
+                </li>
+                <li>
+                    <input type="text" name="first" size="50" />
+                </li>
+                <li>
+                    <label for="last">Last Name:</label>
+                </li>
+                <li>
+                    <input type="text" name="last" size="50" />
+                </li>
+                <li>
+                    <label for="empid">Employee ID:</label>
+                </li>
+                <li>
+                    <input type="text" name="empid" size="50" />
+                </li>
+                <li>
+                    <label for="birth">Date of Birth:</label>
+                </li>
+                <li>
+                    <input type="date" id="birth" name="birth">
+                </li>
+                <li>
+                    <label for="address">Address:</label>
+                </li>
+                <li>
+                    <input type="text" name="address" size="50" />
+                </li>
+                <li>
+                    <label for="country">Country:</label>
+                </li>
+                <li>
+                    <select name="country">
+                        <option selected="" value="Default">(Please select a country)</option>
+                        <option value="AF">Australia</option>
+                        <option value="AL">Canada</option>
+                        <option value="DZ">India</option>
+                        <option value="AS">Russia</option>
+                        <option value="AD">USA</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="no">Contact Number:</label>
+                </li>
+                <li>
+                    <input type="number" id="no" name="no">
+                </li>
+                <li>
+                    <label for="jdate">Date of Joining:</label>
+                </li>
+                <li>
+                    <input type="date" id="jdate" name="jdate">
+                </li>
+                <li>
+                    <label for="email">Email:</label>
+                </li>
+                <li>
+                    <input type="text" name="email" size="50" />
+                </li>
+                <li>
+                    <label id="gender">Gender:</label>
+                </li>
+                <li>
+                    <input type="radio" name="gender" value="Male" /><span>Male</span>
+                </li>
+                <li>
+                    <input type="radio" name="gender" value="Female" /><span>Female</span>
+                </li>
+                <li>
+                    <label for="salary">Salary:</label>
+                </li>
+                <li>
+                    <input type="number" id="salary" name="salary">
+                </li>
+                <li>
+                    <input type="submit" name="submit" value="Submit" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+<script>
+    function formValidation() {
+    var firstName = document.registration.first.value.trim();
+    var lastName = document.registration.last.value.trim();
+    var empId = document.registration.empid.value.trim();
+    var birthDate = document.registration.birth.value.trim();
+    var address = document.registration.address.value.trim();
+    var country = document.registration.country.value;
+    var contactNumber = document.registration.no.value.trim();
+    var joiningDate = document.registration.jdate.value.trim();
+    var email = document.registration.email.value.trim();
+    var gender = document.registration.gender.value;
+    var salary = document.registration.salary.value.trim();
+
+    if (isEmpty(firstName)) {
+        alert("Please enter First Name.");
+        document.registration.first.focus();
+        return false;
+    }
+
+    if (isEmpty(lastName)) {
+        alert("Please enter Last Name.");
+        document.registration.last.focus();
+        return false;
+    }
+
+    if (isEmpty(empId)) {
+        alert("Please enter Employee ID.");
+        document.registration.empid.focus();
+        return false;
+    }
+
+    if (!isValidDate(birthDate)) {
+        alert("Please enter a valid Date of Birth.");
+        document.registration.birth.focus();
+        return false;
+    }
+
+    if (isEmpty(address)) {
+        alert("Please enter Address.");
+        document.registration.address.focus();
+        return false;
+    }
+
+    if (country === "Default") {
+        alert("Please select a Country.");
+        document.registration.country.focus();
+        return false;
+    }
+
+    if (!isValidPhoneNumber(contactNumber)) {
+        alert("Please enter a valid Contact Number.");
+        document.registration.no.focus();
+        return false;
+    }
+
+    if (!isValidDate(joiningDate)) {
+        alert("Please enter a valid Date of Joining.");
+        document.registration.jdate.focus();
+        return false;
+    }
+
+    if (!isValidEmail(email)) {
+        alert("Please enter a valid Email.");
+        document.registration.email.focus();
+        return false;
+    }
+
+    if (gender !== "Male" && gender !== "Female") {
+        alert("Please select Gender.");
+        return false;
+    }
+
+    if (!isValidSalary(salary)) {
+        alert("Please enter a valid Salary.");
+        document.registration.salary.focus();
+        return false;
+    }
+
+    // Additional validation rules can be added here.
+
+    return true;
+}
+
+function isEmpty(value) {
+    return value.trim() === "";
+}
+
+function isValidDate(dateString) {
+    var regex = /^\d{4}-\d{2}-\d{2}$/;
+    return regex.test(dateString);
+}
+
+function isValidPhoneNumber(phoneNumber) {
+    var regex = /^\d{10}$/;
+    return regex.test(phoneNumber);
+}
+
+function isValidEmail(email) {
+    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+function isValidSalary(salary) {
+    // You can add more specific rules for salary validation based on your requirements
+    return !isNaN(parseFloat(salary)) && isFinite(salary) && parseFloat(salary) >= 0;
+}
+
+</script>
+
+</html>

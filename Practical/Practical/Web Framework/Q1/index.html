@@ -1,0 +1,147 @@
+<!--slip 1 : Create an HTML form that contain the Student Registration details and write a 
+JavaScript to validate Student first and last name as it should not contain other than
+alphabets and age should be between 18 to 50.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+<style>
+    /* CSS */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 80px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    width: 50%;
+    background-color: #DCDCDC;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#message {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4caf50;
+}
+
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="studentForm" onsubmit="return submitForm()">
+            <h2>Student Registration Form</h2>
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" pattern="[A-Za-z]+" required>
+
+            <label for="fatherName">Father Name:</label>
+            <input type="text" id="fatherName" pattern="[A-Za-z]+" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" required>
+
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female" required>
+            <label for="female">Female</label>
+
+            <label>Age:</label>
+            <input type="number" name="age" id="age" min="18" max="50" required>
+            
+
+            <label for="city">City:</label>
+            <input type="text" id="city" required>
+
+            <label for="course">Course:</label>
+            <select id="course" required>
+                <option value="B.Tech">B.Tech</option>
+                <option value="MCA">MCA</option>
+                <option value="MCS">MCS</option>
+                <option value="MBA">MBA</option>
+                <option value="BCS">BCS</option>
+            </select>
+
+            <label for="state">State:</label>
+            <input type="text" id="state" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="text" id="dob" required placeholder="YYYY-MM-DD">
+
+            <label for="email">Student Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="number">Mobile Number:</label>
+            <input type="text" id="number" required>
+            
+            <br><br>
+
+            <div class="buttons">
+                <button type="reset">Reset</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script>
+     //js
+
+        function submitForm() {
+            var messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = 'Form submitted successfully!';
+            return false; 
+        }
+        
+    </script>
+</body>
+
+</html>

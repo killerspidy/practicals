@@ -1,0 +1,17 @@
+Q.1) Write a JAVA Program to implement built-in support (java.util.Observable) Weather station with members temperature, humidity, pressure and methods mesurmentsChanged(), setMesurment(), getTemperature(), getHumidity(), getPressure().
+
+Q.2) Write a Java Program to implement I/O Decorator for converting uppercase letters to lower case letters.
+
+Q.3) Write a Java Program to implement Factory method for Pizza Store with createPizza(), orederPizza(), prepare(), Bake(), cut(), box(). Use this to create variety of pizza’s like NyStyleCheesePizza, ChicagoStyleCheesePizza etc.
+
+Q.4) Write a Java Program to implement Singleton pattern for multithreading.
+
+Q.5) Write a Java Program to implement command pattern to test Remote Control.
+
+Q.6) Write a Java Program to implement Adapter pattern for Enumeration iterator.
+
+Q.7) Write a Java Program to implement Iterator Pattern for Designing Menu like Breakfast, Lunch or Dinner Menu.
+
+Q.8) Write a Java Program to implement State Pattern for Gumball Machine. Create instance variable that holds current state from there, we just need to handle all actions, behaviors and state transition that can happen. For actions we need to implement methods to insert a quarter, remove a quarter, turning the crank and display gumball.
+
+

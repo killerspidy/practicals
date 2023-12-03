@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <style>
+    ul {
+      list-style-type: none;
+    }
+
+    form {
+      background-color: #DCDCDC;
+      width: 50%;
+      margin: auto;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form action="#" name="studentRegistrationForm" onsubmit="return validateForm();">
+    <ul>
+      <li><label for="firstName">First Name</label></li>
+      <li><input type="text" name="firstName" id="firstName" pattern="[A-Za-z]+" required></li>
+    </ul>
+    <ul>
+      <li><label for="lastName">Last Name</label></li>
+      <li><input type="text" name="lastName" id="lastName" pattern="[A-Za-z]+" required></li>
+    </ul>
+    <ul>
+      <li><label for="age">Age</label></li>
+      <li><input type="number" name="age" id="age" min="18" max="50" required></li>
+    </ul>
+    <ul>
+      <li><label for="sex">Gender</label></li>
+      <li><input type="radio" name="sex" value="male">Male
+        <input type="radio" name="sex" value="female">Female</li>
+    </ul>
+    <ul>
+      <li><label for="address">Address</label></li>
+      <li><input type="text" name="address" id="address"></li>
+    </ul>
+    <ul>
+      <li><label for="city">City</label></li>
+      <li><input type="text" name="city" id="city"></li>
+    </ul>
+    <ul>
+      <li><label for="course">Course</label></li>
+      <li><input type="text" name="course" id="course"></li>
+    </ul>
+    <ul>
+      <li><label for="email">Student Email</label></li>
+      <li><input type="email" name="email" id="email"></li>
+    </ul>
+    <ul>
+      <li><label for="dob">Date of Birth</label></li>
+      <li><input type="date" name="dob" id="dob"></li>
+    </ul>
+    <ul>
+      <li><label for="mobile">Mobile Number</label></li>
+      <li><input type="tel" name="mobile" id="mobile"></li>
+    </ul>
+    <ul>
+      <li><input type="reset"></li>
+      <li colspan="2"><input type="submit" value="Submit Form"></li>
+    </ul>
+  </form>
+
+  <script>
+    function validateForm() {
+      let form = document.studentRegistrationForm;
+
+      // Validate First Name
+      if (!/^[A-Za-z]+$/.test(form.firstName.value)) {
+        alert("First Name should only contain alphabets");
+        form.firstName.focus();
+        return false;
+      }
+
+      // Validate Last Name
+      if (!/^[A-Za-z]+$/.test(form.lastName.value)) {
+        alert("Last Name should only contain alphabets");
+        form.lastName.focus();
+        return false;
+      }
+
+      // Validate Age
+      let age = parseInt(form.age.value);
+      if (age < 18 || age > 50) {
+        alert("Age should be between 18 and 50");
+        form.age.focus();
+        return false;
+      }
+
+      // Show toast on successful form submission
+      Toastify({
+        text: "Form submitted successfully!",
+        duration: 3000,
+        gravity: "bottom",
+        position: "center",
+        backgroundColor: "#4CAF50",
+      }).showToast();
+
+      return true;
+    }
+  </script>
+
+</body>
+
+</html>

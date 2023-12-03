@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: #FF0000;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<form id="registrationForm" onsubmit="return validateForm()">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required>
+
+    <label for="age">Age (18-50):</label>
+    <input type="number" id="age" name="age" min="18" max="50" required>
+
+    <button type="submit">Submit</button>
+
+    <div id="errorMessages" class="error-message"></div>
+</form>
+
+<script>
+    function validateForm() {
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var age = document.getElementById("age").value;
+
+        var errorMessages = "";
+
+        // Validate First Name and Last Name
+        var nameRegex = /^[a-zA-Z]+$/;
+        if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+            errorMessages += "First and Last Name should contain only alphabets.<br>";
+        }
+
+        // Validate Age
+        if (isNaN(age) || age < 18 || age > 50) {
+            errorMessages += "Age should be between 18 and 50.<br>";
+        }
+
+        // Display error messages
+        var errorDiv = document.getElementById("errorMessages");
+        errorDiv.innerHTML = errorMessages;
+
+        // Return false to prevent form submission if there are errors
+        return errorMessages === "";
+    }
+</script>
+
+</body>
+</html>
